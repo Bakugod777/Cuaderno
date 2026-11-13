@@ -37,7 +37,7 @@ const YAS_NOMBRE = "Yasmina";
 const YAS_APODO = "Yas";
 const YAS_ROL = "compañera de manada";
 const YAS_ESPECIE = "caniche de compañía";
-const YAS_NOTA = "Especie asociada. Responde a Yas. Se mete en todo lado sin pedir cita.";
+const YAS_NOTA = "Especie asociada. Responde a Yas. Se mete en el estudio sin pedir cita.";
 
 /* ----- Observación #1, el gym ----- */
 const GYM_FLECHA_1 = "aquí dijo que no podía más";   // → editar
@@ -86,7 +86,7 @@ Vine a observar y terminé admirando.
 
 Los dibujos de este cuaderno son míos; los buenos los hace ella.`;
 
-const PAGINA_EN_BLANCO = "Para que ella dibuje la siguiente.";
+const PAGINA_EN_BLANCO = "Ahora te toca a ti";
 const CIERRE_SELLO = "Feliz día de la mujer";
 const CIERRE_HINT = "Toca el sello";
 const CIERRE_FIRMA_LINEA = "— {FIRMA}, investigador de campo";
@@ -1497,6 +1497,78 @@ path.draw, line.draw, polyline.draw, circle.draw, ellipse.draw {
   .anillas { left: 50%; margin-left: -11px; width: 22px; }
   .anillas svg { width: 22px; }
   .utiles { z-index: 4; }
+}
+
+#conclusiones .pagina-en-blanco {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  min-height: 0;
+  padding: 8px 8px 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+#conclusiones .dibujo-encabezado {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 4px 10px 12px;
+}
+#conclusiones .dibujo-kicker {
+  display: block;
+  font-family: var(--font-mano);
+  color: #8B7394;
+  font-size: 14px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+#conclusiones .pagina-en-blanco .invita {
+  position: relative;
+  display: block;
+  max-width: none;
+  margin: 0;
+  color: #39263F;
+  font-family: var(--font-titulo);
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.05;
+  opacity: 1;
+  transform: none;
+  text-align: center;
+}
+#conclusiones .dibujo-ayuda {
+  margin: 5px 0 0;
+  font-family: var(--font-mano);
+  color: #77677B;
+  font-size: 15px;
+  line-height: 1.2;
+  text-align: center;
+}
+#conclusiones .dibujo-estrella {
+  position: absolute;
+  right: 9%;
+  top: 16px;
+  color: #B79BC8;
+  font-size: 20px;
+  transform: rotate(12deg);
+}
+#conclusiones .marco-blanco {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 100px;
+  inset: auto;
+  margin: 0 4px;
+  border-radius: 3px;
+  background: rgba(255,252,244,.13);
+}
+#conclusiones .marco-blanco svg { width: 100%; height: 100%; }
+@media (max-width: 899px) {
+  #conclusiones .dibujo-kicker { font-size: 12px; }
+  #conclusiones .dibujo-ayuda { font-size: 13px; }
+  #conclusiones .pagina-en-blanco .invita { font-size: 25px; }
 }
 
 </style>
@@ -3458,12 +3530,18 @@ path.draw, line.draw, polyline.draw, circle.draw, ellipse.draw {
             <div class="gutter-h"></div>
             <div class="hoja hoja-dcha">
               <div class="pagina-en-blanco entra" style="--delay:160ms">
+                <div class="dibujo-encabezado">
+                  <span class="dibujo-kicker">un espacio para ti</span>
+                  <p class="invita" data-copy="PAGINA_EN_BLANCO"></p>
+                  <p class="dibujo-ayuda">Dibuja aquí lo que quieras. Esta página es toda tuya.</p>
+                  <span class="dibujo-estrella" aria-hidden="true">✳</span>
+                </div>
                 <div class="marco-blanco" aria-hidden="true">
                   <svg viewBox="0 0 200 220" preserveAspectRatio="none">
-                    <rect class="boil" x="6" y="6" width="188" height="208" fill="none" stroke="#2A1F28" stroke-width="1.2" stroke-dasharray="6 5"/>
+                    <path d="M5 22 V5 H22 M178 5 H195 V22 M5 198 V215 H22 M178 215 H195 V198" fill="none" stroke="#8D789A" stroke-width="1.25" stroke-linecap="round"/>
+                    <path d="M8 8 Q100 5 192 8 M8 212 Q100 215 192 212" fill="none" stroke="#C8B9C9" stroke-width=".7" opacity=".55"/>
                   </svg>
                 </div>
-                <p class="invita" data-copy="PAGINA_EN_BLANCO"></p>
               </div>
               <div class="sello-zona">
                 <div class="splats" id="splats" aria-hidden="true">
